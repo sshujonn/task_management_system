@@ -1,0 +1,123 @@
+{% load static %}
+{% load widget_tweaks %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>Login | Tution Fee Collection System</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{#	<link rel="stylesheet" href="../static/css/style.css">#}
+
+</head>
+<body>
+    <div class="main">
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form method="POST" class="register-form" id="register-form" href="{% url 'signup' %}">
+
+                            {% csrf_token %}
+{#                            {% for field in form %}#}
+                                <div class="form-group">
+                                    <label for="firstname"></label>
+{#                                    <input type="text" name="firstname" id="firstname" placeholder="Your First Name"/>#}
+                                    {% render_field form.first_name placeholder=form.first_name.label %}
+{#                                    {{ field }}#}
+                                    {% if form.first_name.help_text %}
+                                      <small style="color: grey">{{ form.first_name.help_text }}</small>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="lastname"></label>
+                                    {% render_field form.last_name placeholder=form.last_name.label %}
+                                    {% if form.last_name.help_text %}
+                                      <small style="color: grey">{{ form.last_name.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{ form.salutation.label }}"></label>
+                                    <select name="{{ form.salutation.name }}" id="{{ form.salutation.label }}"  class="form-control" required>
+                                        <option value="Select Your Salutation">Select Your Salutation</option>
+                                        {% for id, name in form.salutation.field.choices %}
+                                        <option value="{{ id }}">{{ name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% if form.salutaion.help_text %}
+                                      <small style="color: grey">{{ form.salutation.help_text }}</small>
+                                    {% endif %}
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="{{ form.designation.id }}"></label>
+                                    <select name="{{ form.designation.name }}" id="{{ form.designation.id }}"  class="form-control" required>
+                                        <option value="Select Your Salutation">Select Your Designation</option>
+                                        {% for id, name in form.designation.field.choices %}
+                                        <option value="{{ id }}">{{ name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    {% if form.designation.help_text %}
+                                      <small style="color: grey">{{ form.designation.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="email"></label>
+                                    {% render_field form.email placeholder=form.email.label %}
+                                    {% if form.email.help_text %}
+                                      <small style="color: grey">{{ form.email.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="password1"></label>
+                                    {% render_field form.password1 placeholder=form.password1.label %}
+                                    {% if form.password1.help_text %}
+                                      <small style="color: grey">{{ form.password1.help_text }}</small>
+                                    {% endif %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="password2"></label>
+                                    {% render_field form.password2 placeholder=form.password2.label %}
+                                    {% if form.password2.help_text %}
+                                      <small style="color: grey">{{ form.password2.help_text }}</small>
+                                    {% endif %}
+                                </div>
+{#                            {% endfor %}#}
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="signup-image">
+                        <figure><img src="{% static 'images/signup-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'signin' %}" class="signup-image-link">I am already member</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    </div>
+
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+{#    <script src="{% static 'js/popper.js' %}"></script>#}
+{#    <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
+    <script src="{% static 'js/signup.js' %}"></script>
+</body>
+</html>

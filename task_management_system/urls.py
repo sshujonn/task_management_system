@@ -26,8 +26,8 @@ urlpatterns = [
     path('api/token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
     path('admin/', admin.site.urls),
 
-
-    # path('hello/', task_views.HelloView.as_view(), name='hello'),
+    path('sign-up/', views.sign_up, name='signup'),
+    path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('sign-in/', views.sign_in, name='signin'),
     path('sign-out/', views.sign_out, name='logout'),
     path('task-entry/', task_views.task_entry, name='task_entry'),

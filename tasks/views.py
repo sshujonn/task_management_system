@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 from profiles.models import Profile
 from tasks.forms import TaskForm, DisplayTaskForm
+
 from tasks.models import Task
 
 from rest_framework import generics
