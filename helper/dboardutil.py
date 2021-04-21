@@ -28,7 +28,7 @@ class DBoardUtil(Object):
         )
         email.send()
         messages.success(request,
-                         'An activation url is sent to your email. Please verify')
+                         "An activation url is sent to your email. Please verify. Don't forget to check spam if not in inbox.")
 
 
 class TokenGenerator(PasswordResetTokenGenerator):

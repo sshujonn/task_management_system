@@ -20,12 +20,13 @@ class ChoiceFieldNoValidation(forms.ChoiceField):
         pass
 
 class SignUpForm(UserCreationForm):
-    first_name = forms.CharField(max_length=30, required=False, help_text='First Name. Optional.')
-    last_name = forms.CharField(max_length=30, required=False, help_text='Last Name. Optional.')
+    first_name = forms.CharField(max_length=30, required=True, help_text='Required.First Name.')
+    last_name = forms.CharField(max_length=30, required=True, help_text='Required.Last Name.')
     email = forms.EmailField(max_length=254, help_text='Required. This will be used as the username.')
-    # designation = forms.Select(
-    #     choices=Profile.DesignationChoices.choices, validators=[]
-    # )
+    password1 = forms.CharField(help_text='Password must contain at least 8 characters with the combination of letters, numbers.')
+    password2 = forms.CharField(help_text='Please confirm your password again')
+
+
     designation = ChoiceFieldNoValidation(
         choices=Profile.DesignationChoices.choices,
     )
@@ -33,12 +34,7 @@ class SignUpForm(UserCreationForm):
     salutation = ChoiceFieldNoValidation(
         choices=Profile.SalutationChoices.choices,
     )
-    # designation = forms.ChoiceField(Profile.DesignationChoices.choices,
-    #                   required=False, widget=forms.Select())
-    # salutation = forms.MultipleChoiceField(
-    #     required=True,
-    #     choices=Profile.SalutationChoices.choices,
-    # )
+
 
     def clean_first_name(self):
         first_name = self.cleaned_data.get('first_name')

@@ -72,7 +72,9 @@ def sign_up(request):
 
             return HttpResponseRedirect(reverse('signin'))
         else:
-            messages.warning(request, 'Your information is incorrect.')
+            # import pdb;pdb.set_trace()
+            messages.warning(request, form.errors)
+            # messages.warning(request, 'Your information is incorrect.')
 
     return render(request, 'signup.html', {'form': form})
 

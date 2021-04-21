@@ -22,9 +22,22 @@
         <!-- Sign up form -->
         <section class="signup">
             <div class="container">
+                <h2 class="form-title text-center">Sign up</h2>
+                    {% if messages %}
+                            <ul class="messages alert alert-danger">
+                                {% for message in messages %}
+                                    <li{% if message.tags %}
+                                        class="{{ message.tags }}"{% endif %}>
+                                        {{ message }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
                 <div class="signup-content">
+
                     <div class="signup-form">
-                        <h2 class="form-title">Sign up</h2>
+
+
                         <form method="POST" class="register-form" id="register-form" href="{% url 'signup' %}">
 
                             {% csrf_token %}
@@ -48,8 +61,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="{{ form.salutation.label }}"></label>
-                                    <select name="{{ form.salutation.name }}" id="{{ form.salutation.label }}"  class="form-control" required>
-                                        <option value="Select Your Salutation">Select Your Salutation</option>
+                                    <select name="{{ form.salutation.name }}" id="{{ form.salutation.label }}"  class="form-control" required style="border: 0; border-bottom: 1px solid #ced4da">
+                                        <option value="Select Your Salutation" disabled selected>Select Your Salutation</option>
                                         {% for id, name in form.salutation.field.choices %}
                                         <option value="{{ id }}">{{ name }}</option>
                                         {% endfor %}
@@ -61,8 +74,8 @@
 
                                 <div class="form-group">
                                     <label for="{{ form.designation.id }}"></label>
-                                    <select name="{{ form.designation.name }}" id="{{ form.designation.id }}"  class="form-control" required>
-                                        <option value="Select Your Salutation">Select Your Designation</option>
+                                    <select name="{{ form.designation.name }}" id="{{ form.designation.id }}" class="form-control" required style="border: 0; border-bottom: 1px solid #ced4da">
+                                        <option value="Select Your Salutation" disabled selected>Select Your Designation</option>
                                         {% for id, name in form.designation.field.choices %}
                                         <option value="{{ id }}">{{ name }}</option>
                                         {% endfor %}
@@ -80,14 +93,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password1"></label>
-                                    {% render_field form.password1 placeholder=form.password1.label %}
+                                    {% render_field form.password1 placeholder='New Password' type='password' %}
                                     {% if form.password1.help_text %}
                                       <small style="color: grey">{{ form.password1.help_text }}</small>
                                     {% endif %}
                                 </div>
                                 <div class="form-group">
                                     <label for="password2"></label>
-                                    {% render_field form.password2 placeholder=form.password2.label %}
+                                    {% render_field form.password2 placeholder='Confirm Password' type='password' %}
                                     {% if form.password2.help_text %}
                                       <small style="color: grey">{{ form.password2.help_text }}</small>
                                     {% endif %}
@@ -117,7 +130,7 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
 {#    <script src="{% static 'js/popper.js' %}"></script>#}
-{#    <script src="{% static 'js/bootstrap.min.js' %}"></script>#}
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/signup.js' %}"></script>
 </body>
 </html>
