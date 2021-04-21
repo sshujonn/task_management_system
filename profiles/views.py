@@ -29,7 +29,12 @@ def sign_in(request):
         user = authenticate(username=username, password=password)
         if user:
             if user.is_active:
-                login(request, user)
+                profile = Profile.objects.get(pk=user.id)
+                if profile.is_email_verified:
+                    login(request, user)
+                else:
+                    messages.warning(request, 'Please activate your account. An email verification code was sent to your email.')
+                    return render(request, 'sign_in.html', {'form': form})
 
                 return HttpResponseRedirect(reverse('dashboard'))
             else:

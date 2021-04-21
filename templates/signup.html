@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  	<title>Login | Tution Fee Collection System</title>
+  	<title>Signup | Task Management System</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -45,7 +45,7 @@
                                 <div class="form-group">
                                     <label for="firstname"></label>
 {#                                    <input type="text" name="firstname" id="firstname" placeholder="Your First Name"/>#}
-                                    {% render_field form.first_name placeholder=form.first_name.label %}
+                                    {% render_field form.first_name placeholder=form.first_name.label autocomplete="off"%}
 {#                                    {{ field }}#}
                                     {% if form.first_name.help_text %}
                                       <small style="color: grey">{{ form.first_name.help_text }}</small>
@@ -54,7 +54,7 @@
 
                                 <div class="form-group">
                                     <label for="lastname"></label>
-                                    {% render_field form.last_name placeholder=form.last_name.label %}
+                                    {% render_field form.last_name placeholder=form.last_name.label autocomplete="off"%}
                                     {% if form.last_name.help_text %}
                                       <small style="color: grey">{{ form.last_name.help_text }}</small>
                                     {% endif %}
@@ -86,21 +86,21 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email"></label>
-                                    {% render_field form.email placeholder=form.email.label %}
+                                    {% render_field form.email placeholder=form.email.label autocomplete="off"%}
                                     {% if form.email.help_text %}
                                       <small style="color: grey">{{ form.email.help_text }}</small>
                                     {% endif %}
                                 </div>
                                 <div class="form-group">
                                     <label for="password1"></label>
-                                    {% render_field form.password1 placeholder='New Password' type='password' %}
+                                    {% render_field form.password1 placeholder='New Password' type='password' autocomplete="off"%}
                                     {% if form.password1.help_text %}
                                       <small style="color: grey">{{ form.password1.help_text }}</small>
                                     {% endif %}
                                 </div>
                                 <div class="form-group">
                                     <label for="password2"></label>
-                                    {% render_field form.password2 placeholder='Confirm Password' type='password' %}
+                                    {% render_field form.password2 placeholder='Confirm Password' type='password' autocomplete="off"%}
                                     {% if form.password2.help_text %}
                                       <small style="color: grey">{{ form.password2.help_text }}</small>
                                     {% endif %}
