@@ -57,6 +57,9 @@ class TaskSerializer(serializers.ModelSerializer):
             'name',
             'description',
             'reminder_time',
+            'assigned_at',
+            'deadline',
+            'progress',
         )
 
 class TasksEdit(APIView):

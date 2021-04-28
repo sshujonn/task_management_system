@@ -8,13 +8,15 @@ from django import forms
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'description', 'reminder_time']
+        fields = ['name', 'description', 'reminder_time', 'assigned_at', 'deadline']
 
 
 class DisplayTaskForm(forms.Form):
     name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     description = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
     reminder_time = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'], widget=forms.DateTimeInput(attrs={'class': 'form-control'}))
+    assigned_at = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'], widget=forms.DateTimeInput(attrs={'class': 'form-control'}))
+    deadline = forms.DateTimeField(input_formats=['%d/%m/%Y %H:%M'], widget=forms.DateTimeInput(attrs={'class': 'form-control'}))
 
     # reminder_time = forms.DateTimeField(
     #     input_formats=['%d/%m/%y %I:%M %p'],

@@ -28,6 +28,7 @@ def sign_in(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
+
             if user.is_active:
                 profile = Profile.objects.get(pk=user.id)
                 if profile.is_email_verified:
