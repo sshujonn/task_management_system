@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'helper',
     'tasks',
     'profiles',
+    'menu',
+    'parent_menu'
 ]
 
 MIDDLEWARE = [
