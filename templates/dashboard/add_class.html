@@ -1,0 +1,17 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+<form action="" method="post">
+  {% csrf_token %}
+  {{form}}
+<!--  &lt;!&ndash; Text input &ndash;&gt;-->
+<!--  <div class="form-outline mb-4">-->
+<!--    <input type="text" id="form6Example3" class="form-control" />-->
+<!--    <label class="form-label" for="form6Example3">Class name</label>-->
+<!--  </div>-->
+
+
+  <!-- Submit button -->
+  <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+</form>
+{% endblock %}

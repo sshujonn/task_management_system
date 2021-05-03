@@ -29,6 +29,9 @@ def sign_in(request):
         user = authenticate(username=username, password=password)
         if user:
 
+            if user.is_superuser:
+                login(request, user)
+                return HttpResponseRedirect(reverse('dashboard'))
             if user.is_active:
                 profile = Profile.objects.get(pk=user.id)
                 if profile.is_email_verified:
@@ -99,8 +102,8 @@ def activate(request, uidb64, token):
         profile.save()
         login(request, profile)
 
-        messages.success(request,
-                         'Thank you for your email confirmation. Now you can update your profile.')
+        # messages.success(request,
+        #                  'Thank you for your email confirmation. Now you can update your profile.')
 
         return HttpResponseRedirect(reverse('dashboard'))
         # return redirect('edit')
