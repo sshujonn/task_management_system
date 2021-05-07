@@ -14,7 +14,7 @@ from tasks.forms import DisplayTaskForm
 
 from datetime import datetime
 
-
+from profiles.service import ProfileService
 # Create your views here.
 
 
@@ -62,8 +62,9 @@ def dashboard(request):
         form = DisplayTaskForm(request.POST)
 
         tasks = Task.objects.filter(user=request.user).filter(reminder_time__gte=datetime.now())
-
-        return render(request, 'table.html', {'form': form, 'tasks': tasks})
+        menu = ProfileService().get_menu(request.user)
+        # import pdb;pdb.set_trace()
+        return render(request, 'dashboard/dashboard.html', {'form': form, 'tasks': tasks, 'menu': menu})
     else:
         return HttpResponseRedirect(reverse('signin'))
 
