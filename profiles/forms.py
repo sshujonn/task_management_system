@@ -25,7 +25,7 @@ class SignUpForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. This will be used as the username.')
     password1 = forms.CharField(help_text='Password must contain at least 8 characters with the combination of letters, numbers.')
     password2 = forms.CharField(help_text='Please confirm your password again')
-
+    office_id = forms.IntegerField(required=True, help_text='Required.Office ID.')
 
     designation = ChoiceFieldNoValidation(
         choices=Profile.DesignationChoices.choices,
@@ -81,5 +81,5 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = Profile
-        fields = ( 'email', 'first_name', 'last_name', 'salutation', 'designation', 'password1', 'password2', )
+        fields = ( 'email', 'first_name', 'last_name', 'salutation', 'designation', 'password1', 'password2', 'office_id')
 

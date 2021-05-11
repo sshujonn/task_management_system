@@ -3,7 +3,10 @@ from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 from profiles.models import Profile
+from projects.models import Project
+
 # Create your models here.
+
 class Task(models.Model):
     name = models.TextField(max_length=100, blank=True)
     description = models.TextField(max_length=500, blank=True)
@@ -17,7 +20,10 @@ class Task(models.Model):
             MinValueValidator(0)
         ]
      )
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    assigned_to = models.ForeignKey(User, on_delete=models.CASCADE, blank=True)
+    assigned_by = models.IntegerField(blank=False)
+    created_by = models.IntegerField(blank=False)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, blank=True)
 
     #TODO:: Add more needed field
     created_at = models.DateTimeField(auto_now_add=True)

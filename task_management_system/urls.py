@@ -18,6 +18,7 @@ from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
 
 from tasks import views as task_views
+from projects import views as project_views
 from profiles import views
 
 
@@ -39,6 +40,9 @@ urlpatterns = [
     path('', views.dashboard, name="dashboard"),
 
     path('task-edit/<int:pk>/<slug:action>', task_views.TasksEdit.as_view(),
-         name="task_edit")
+         name="task_edit"),
+
+
+    path('create_project/', project_views.ProjectCreate.as_view(), name='create_project'),
 ]
 

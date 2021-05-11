@@ -6,7 +6,8 @@ class Project(models.Model):
     project_name = models.CharField(max_length=50)
     project_details = models.CharField(max_length=50)
     deadline = models.DateTimeField()
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    last_updated_by = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.IntegerField(blank=False)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

@@ -52,6 +52,8 @@
                                     {% endif %}
                                 </div>
 
+
+
                                 <div class="form-group">
                                     <label for="lastname"></label>
                                     {% render_field form.last_name placeholder=form.last_name.label autocomplete="off"%}
@@ -59,6 +61,15 @@
                                       <small style="color: grey">{{ form.last_name.help_text }}</small>
                                     {% endif %}
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="office_id"></label>
+                                    {% render_field form.office_id placeholder=form.office_id.label autocomplete="off"%}
+                                    {% if form.office_id.help_text %}
+                                      <small style="color: grey">{{ form.office_id.help_text }}</small>
+                                    {% endif %}
+                                </div>
+
                                 <div class="form-group">
                                     <label for="{{ form.salutation.label }}"></label>
                                     <select name="{{ form.salutation.name }}" id="{{ form.salutation.label }}"  class="form-control" required style="border: 0; border-bottom: 1px solid #ced4da">

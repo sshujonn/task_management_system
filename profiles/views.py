@@ -14,9 +14,9 @@ from tasks.forms import DisplayTaskForm
 
 from datetime import datetime
 
-from profiles.service import ProfileService
 # Create your views here.
-
+from helper.global_service import GlobalService
+gs = GlobalService()
 
 def sign_in(request):
     if request.user.is_authenticated:
@@ -61,8 +61,8 @@ def dashboard(request):
     if request.user.is_authenticated:
         form = DisplayTaskForm(request.POST)
 
-        tasks = Task.objects.filter(user=request.user).filter(reminder_time__gte=datetime.now())
-        menu = ProfileService().get_menu(request.user)
+        tasks = Task.objects.filter(assigned_to=request.user).filter(reminder_time__gte=datetime.now())
+        menu = gs.get_menu(request.user)
         # import pdb;pdb.set_trace()
         return render(request, 'dashboard/dashboard.html', {'form': form, 'tasks': tasks, 'menu': menu})
     else:

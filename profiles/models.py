@@ -18,6 +18,6 @@ class Profile(User):
 
     is_email_verified =  models.BooleanField(default=False)
     is_authorized = models.BooleanField(default=False)
-    bio = models.TextField(max_length=500, blank=True)
+    office_id = models.IntegerField(blank=False)
     salutation = models.CharField(max_length=3, choices=SalutationChoices.choices, default=SalutationChoices.MISTER)
-    designation = models.CharField(max_length=3, choices=DesignationChoices.choices, default='')
+    designation = models.CharField(max_length=6, choices=DesignationChoices.choices, default='')

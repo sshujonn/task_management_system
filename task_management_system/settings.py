@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'helper',
     'tasks',
     'profiles',
+    'projects',
     'menu',
     'parent_menu'
 ]
