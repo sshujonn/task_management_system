@@ -46,3 +46,6 @@ urlpatterns = [
     path('create_project/', project_views.ProjectCreate.as_view(), name='create_project'),
 ]
 
+admin.site.site_header = "Task Manager"
+admin.site.index_title = "Task Manager"
+admin.site.site_title = "Task Manager"
