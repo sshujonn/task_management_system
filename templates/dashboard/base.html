@@ -53,7 +53,7 @@
         <div class="header-mobile__bar">
             <div class="container-fluid">
                 <div class="header-mobile-inner">
-                    <a class="logo" href="index.html">
+                    <a class="logo" href="{% url 'dashboard' %}">
                         <img src="{% static 'dashboard/images/logo.png' %}" alt="Task Manager"/>
                     </a>
                     <button class="hamburger hamburger--slider" type="button">
@@ -176,10 +176,10 @@
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
                                         <img src="{% static 'dashboard/images/icon/avatar-01.jpg' %}" alt="John Doe"/>
-                                        <img src="{% static 'dashboard/images/logo.png' %}" alt="Cool Admin"/>
+{#                                        <img src="{% static 'dashboard/images/logo.png' %}" alt="Task Manager"/>#}
                                     </div>
                                     <div class="content">
-                                        <a class="js-acc-btn" href="#">{{ request.user.username }}</a>
+                                        <a class="js-acc-btn" href="#">{{ request.user.first_name }}</a>
                                     </div>
                                     <div class="account-dropdown js-dropdown">
                                         <div class="info clearfix">
@@ -191,7 +191,7 @@
                                             </div>
                                             <div class="content">
                                                 <h5 class="name">
-                                                    <a href="#">{{ request.user.username }}</a>
+                                                    <a href="#">{{ request.user.first_name }}</a>
                                                 </h5>
                                                 <span class="email">{{ request.user.email }}</span>
                                             </div>
