@@ -42,8 +42,10 @@ urlpatterns = [
     path('task-edit/<int:pk>/<slug:action>', task_views.TasksEdit.as_view(),
          name="task_edit"),
 
-
     path('create_project/', project_views.ProjectCreate.as_view(), name='create_project'),
+    path('view_project/', project_views.ProjectList.as_view(), name='view_project'),
+    path('edit-project/<int:pk>/<slug:action>', project_views.ProjectsEdit.as_view(),
+             name="update_project"),
 ]
 
 admin.site.site_header = "Task Manager"
