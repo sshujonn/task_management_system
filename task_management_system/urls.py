@@ -31,7 +31,7 @@ urlpatterns = [
     path('activate/<uidb64>/<token>/', views.activate, name='activate'),
     path('sign-in/', views.sign_in, name='signin'),
     path('sign-out/', views.sign_out, name='logout'),
-    path('task-entry/', task_views.task_entry, name='task_entry'),
+    # path('task-entry/', task_views.task_entry, name='task_entry'),
     path('task-history/', task_views.task_history, name='task_history'),
 
 
@@ -39,8 +39,10 @@ urlpatterns = [
 
     path('', views.dashboard, name="dashboard"),
 
-    path('task-edit/<int:pk>/<slug:action>', task_views.TasksEdit.as_view(),
-         name="task_edit"),
+    path('edit-task/<int:pk>/<slug:action>', task_views.TasksEdit.as_view(),
+         name="update_task"),
+    path('create_task/', task_views.TaskCreate.as_view(), name='create_task'),
+    path('view_task/', task_views.TaskList.as_view(), name='view_task'),
 
     path('create_project/', project_views.ProjectCreate.as_view(), name='create_project'),
     path('view_project/', project_views.ProjectList.as_view(), name='view_project'),

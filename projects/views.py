@@ -1,11 +1,9 @@
 from django.http import HttpResponseRedirect
 from django.core import serializers as c_serializers
-from django.shortcuts import render
 
 # Create your views here.
 from django.urls import reverse
-from django_tables2 import tables
-from rest_framework import renderers, serializers, generics
+from rest_framework import renderers, serializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView

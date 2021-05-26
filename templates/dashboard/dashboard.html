@@ -5,7 +5,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <form autocomplete="off" class="form-horizontal" method="post" action="{% url 'task_entry' %}">
+                        <form autocomplete="off" class="form-horizontal" method="post" action="{% url 'create_task' %}">
                             {% csrf_token %}
                             <div class="form-group">
                                 <label for="id_name">Name<span style="color: red">*</span></label>

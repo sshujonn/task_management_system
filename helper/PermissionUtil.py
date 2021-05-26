@@ -9,7 +9,7 @@ def check_permission(request, action, module):
         groups = User.objects.get(pk=request.user.id).groups.all()
         if action == ("detail" or "view") or module[0] == "view":
             codename = "view_{name}".format(name=name)
-        elif action == "change":
+        elif action == "update":
             codename = "change_{name}".format(name=name)
         elif action == "delete":
             codename = "delete_{name}".format(name=name)
@@ -21,10 +21,7 @@ def check_permission(request, action, module):
             return False
         permission = False
         for group in groups:
-            if codename == "default_company_set":
-                return True
-            else:
-                permission = permission or group.permissions.filter(codename=codename).exists()
+            permission = permission or group.permissions.filter(codename=codename).exists()
         # import pdb;pdb.set_trace()
         return permission
     except Exception as ex:
