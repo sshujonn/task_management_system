@@ -3,6 +3,7 @@ from django.core import serializers as c_serializers
 
 # Create your views here.
 from django.urls import reverse
+from django.contrib import messages
 from rest_framework import renderers, serializers
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -55,11 +56,11 @@ class ProjectCreate(APIView):
 class ProjectList(APIView):
     permission_classes = (IsAuthenticated, DBCRUDPermission)
     template_name = 'dashboard/project/view_projects.html'
-    renderer_classes = [renderers.TemplateHTMLRenderer]
+    renderer_classes = [renderers.TemplateHTMLRenderer, renderers.JSONRenderer]
 
     def get(self, request):
         menu = gs.get_menu(request.user)
-        projects = Project.objects.filter()
+        projects = Project.objects.filter(created_by=request.user.id)
         projects = c_serializers.serialize("python", projects)
         return Response({'serializer': projects, 'menu': menu}, template_name=self.template_name)
 
@@ -67,11 +68,15 @@ class ProjectList(APIView):
 class ProjectsEdit(APIView):
     permission_classes = (IsAuthenticated,)
     template_name = 'dashboard/project/edit_project_page.html'
-    renderer_classes = [renderers.TemplateHTMLRenderer]
+    renderer_classes = [renderers.TemplateHTMLRenderer, renderers.JSONRenderer]
 
     def get(self, request, pk, action=None):
-        project = Project.objects.filter(created_by=request.user.id).get(pk=pk)
+        project = Project.objects.filter(created_by=request.user.id)
 
+        if (len(project)<1):
+            messages.warning(request, 'Only creator of this project can update')
+            return HttpResponseRedirect(reverse('view_project'))
+        project = project.get(pk=pk)
         if action == 'delete':
             project.delete()
         else:

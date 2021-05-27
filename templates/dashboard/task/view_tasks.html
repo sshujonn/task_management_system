@@ -9,10 +9,14 @@
 
     <thead>
         <tr>
-            {% for field, value in serializer.0.fields.items %}
-                <th>{{ field | title }}</th>
-            {% endfor %}
-            <th>Action</th>
+            {% if serializer.0 %}
+                {% for field, value in serializer.0.fields.items %}
+                    <th>{{ field | title }}</th>
+                {% endfor %}
+                <th>Action</th>
+            {% else %}
+                <th>No related task found</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>

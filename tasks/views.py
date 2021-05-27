@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.db.models import Q
 from django.shortcuts import render
@@ -107,7 +108,7 @@ class TaskList(APIView):
 
     def get(self, request):
         menu = gs.get_menu(request.user)
-        tasks = Task.objects.filter()
+        tasks = Task.objects.filter(Q(created_by=request.user.pk) | Q(assigned_by=request.user.pk)| Q(assigned_to=request.user))
         tasks = c_serializers.serialize("python", tasks)
         return Response({'serializer': tasks, 'menu': menu}, template_name=self.template_name)
 
@@ -118,8 +119,12 @@ class TasksEdit(APIView):
 
     def get(self, request, pk, action=None):
         menu = gs.get_menu(request.user)
-        task = Task.objects.filter(Q(created_by=request.user.pk) | Q(assigned_by=request.user.pk)| Q(assigned_to=request.user)).get(pk=pk)
+        task = Task.objects.filter(Q(created_by=request.user.pk) | Q(assigned_by=request.user.pk)| Q(assigned_to=request.user))
 
+        if (len(task)<1):
+            messages.warning(request, 'Only creator of this task can update')
+            return HttpResponseRedirect(reverse('view_task'))
+        task = task.get(pk=pk)
         if action == 'delete':
             task.delete()
         else:
